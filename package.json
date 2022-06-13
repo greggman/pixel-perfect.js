@@ -1,0 +1,15 @@
+{
+  "name": "pixel-perfect.js",
+  "version": "1.0.0",
+  "description": "Display Images pixel perfect",
+  "main": "pixel-perfect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "files": [
+    "pixel-perfect.js"
+  ],
+  "author": "Gregg Tavares",
+  "license": "MIT"
+}

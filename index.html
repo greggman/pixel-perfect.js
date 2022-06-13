@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>pixel-perfect.js</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <meta property="og:title" content="pixel-perfect.js" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://greggman.github.io/pixel-perfect.js/images/screenshot.png" />
+    <meta property="og:description" content="pixel-perfect.js" />
+    <meta property="og:url" content="https://greggman.github.io/pixel-perfect.js/" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@greggman">
+    <meta name="twitter:creator" content="@greggman">
+    <meta name="twitter:domain" content="greggman.github.io">
+    <meta name="twitter:title" content="pixel-perfect.js">
+    <meta name="twitter:url" content="https://greggman.github.io/pixel-perfect.js/">
+    <meta name="twitter:description" content="pixel-perfect.js">
+    <meta name="twitter:image:src" content="https://greggman.github.io/pixel-perfect.js/images/screenshot.png">
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="pixel-perfect.css">
+  </head>
+  <body>
+    <div class="desc">
+      <h1>pixel-perfect.js</h1>
+      <p>The images below should be displayed "pixel-perfect" (at least on Chrome/Edge/Firefox). <a href="#details">details below</a></p>
+      <p>
+         Try zooming in and out with 
+         <ul>
+         <li>Mac:<kbd>Cmd</kbd>+<kbd>+</kbd> /  <kbd>Cmd</kbd>+<kbd>-</kbd>
+         <li>Windows:<kbd>Ctrl</kbd>+<kbd>+</kbd> /  <kbd>Ctrl</kbd>+<kbd>-</kbd>
+         </ul>
+       </p>
+      </p>
+    </div>
+    <pre id="info"></pre>
+
+    <div class="center vspace">
+      <div class="sep">pixel perfect</div>
+    </div>
+
+    <div class="center">
+      <img src="images/128x128-lines.png" class="pixel-perfect" data-pixel-perfect="scale=2">
+      <img src="images/128x128-stippled.png" class="pixel-perfect" data-pixel-perfect="scale=2">
+    </div>
+
+    <div class="center vspace">
+      <div class="sep">browser image-rendering: pixelated</div>
+    </div>
+
+    <div class="center">
+      <img src="images/128x128-lines.png" class="pixelated" style="width: 256px; height: 256px;">
+      <img src="images/128x128-stippled.png" class="pixelated" style="width: 256px; height: 256px;">
+    </div>
+
+    <div class="center vspace">
+      <div class="sep">browser image-rendering: smooth (default)</div>
+    </div>
+
+    <div class="center">
+      <img src="images/128x128-lines.png" style="width: 256px; height: 256px;">
+      <img src="images/128x128-stippled.png" style="width: 256px; height: 256px;">
+    </div>
+
+    <div class="desc">
+    <hr id="details">
+
+    <h2>WAT?:</h2>
+    <p>
+      Sometimes you want to display pixel art and you want it displayed "pixel-perfect"
+      meaning you don't want any blurring of the pixels and you want each pixel in the
+      original image to be the some multiple of pixels on the user's device. In other words
+      say you have this 16x16 image.
+    </p>
+
+    <div class="center">
+      <img src="images/blocky_right.png" class="pixel-perfect show-size" data-pixel-perfect="scale=4">
+    </div>
+
+    <p>
+      You might think using <code>image-rendering: pixelated</code> or <code>image-rendering: crisp-edges</code> 
+      would work. Unfortunately it won't. The reason is <strong>fractional devicePixelRatios</strong>!
+    </p>
+
+    <p>
+      Many devices have fractional devicePixelRatios. The devicePixelRatio is the ratio of the number of actual pixels
+      to each CSS pixel (CSS pixels are what the browser uses). So, that 16x16 pixel image, by default, in every browser,
+      will be displayed at 16 * devicePixelRatio. If the devicePixelRatio is 1.5 then it's going to draw the image 24x24
+      pixels large on the display. By default, most browser will use bilinear filtering. Below is the same
+      image as above with the browser's default.
+    </p>
+
+    <div class="center">
+      <img src="images/blocky_right.png" class="show-size" style="width: 64px; height: 64px;">
+    </div>
+
+    <p>
+      Setting <code>image-rendering: pixelated</code> or <code>image-rendering: crisp-edges</code> will change
+      the filtering to "nearest-neighbor" (*) but it doesn't solve the issue that you can't scale a 16x16 pixel
+      image into a 24x24 pixel space without making some pixels larger than others. In other words, it will not
+      be "pixel-perfect".
+    </p>
+
+    <div class="center">
+      <img src="images/blocky_right.png" style="width: 64px; height: 64px;" class="pixelated show-size">
+    </div>
+
+
+    <p>
+      This script attempts to solve it. You give the image a desired integer scale (eg: scale=4)
+      and it will adjust the image's CSS width and height so that given the user's current devicePixelRatio
+      the image will be displayed such that each pixel in the original image is scaled the same size as
+      all the other pixels, or "pixel perfect".
+    </p>
+
+    <h2>Issues:</h2>
+
+    <p>
+      In order to be able to display images pixel perfect you must let the image change size on the page
+      relative to other things. In the examples at the top of the page, try zooming in and out. Notice
+      the 2 "pixel perfect" images do not scale smoothly. Instead they "jump" to the closed size that
+      fits scaling the all the pixels by the same integer size. To put it another way, a 100x100 image
+      can only appear on the page at 100x100, 200x200, 300x300, 400x400, etc... It can't by 50x50 nor
+      can it be 150x150. Those sizes wouldn't it to be "pixel-perfect".
+    </p>
+
+    <div class="center">
+      <img src="images/blocky_right.png" class="pixel-perfect" data-pixel-perfect="scale=4">
+      <img src="images/blocky_right.png" style="width: 64px; height: 64px;">
+      <img src="images/blocky_right.png" style="width: 64px; height: 64px;" class="pixelated">
+    </div>
+ 
+    <p>
+      Compare the 3 images above as you change the zoom level. The one on the left, being pixel perfect,
+      may change its size relative to the others to maintain pixel perfection.
+    </p>
+
+    <h2>How to Use:</h2>
+    <p><a href="https://github.com/greggman/pixel-perfect.js/">See the ReadMe</a>.</p>
+
+    </div>
+  </body>
+<script type="module">
+import * as pp from './pixel-perfect.js';
+
+function makeAllPixelPerfect() {
+  document.querySelectorAll(".pixel-perfect").forEach(pp.makePixelPerfect);
+}
+window.addEventListener('resize', makeAllPixelPerfect);
+makeAllPixelPerfect();
+</script>
+<script type="module" src="index.js"></script>
+</html>
+

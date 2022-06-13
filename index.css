@@ -1,0 +1,43 @@
+html {
+  font-size: 2vh;
+}
+ul {
+  padding: 0 3vh;
+}
+kbd {
+  background-color: #eee;
+  border-radius: 0.2vh;
+  border: 0.125vh solid #b4b4b4;
+  box-shadow:
+      0 0.125vh 0.125vh rgba(0, 0, 0, .2), 
+      0 0.25vh 0 0 rgba(255, 255, 255, .7) inset;
+  color: #333;
+  display: inline-block;
+  font-size: 1.5vh;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.25vh 0.5vh;
+  white-space: nowrap;
+}
+.center {
+  text-align: center;
+}
+.vspace {
+  padding: 1em;
+}
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.sep {
+  display: inline-flex;
+  align-items: center;
+}
+.desc {
+  max-width: 50vw;
+  margin: 0 auto;
+}
+.show-size-info {
+  font-family: monospace;
+  font-size: 1.2vh;
+}

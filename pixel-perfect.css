@@ -1,0 +1,4 @@
+.pixel-perfect {
+  image-rendering: pixelated;    /* this means "nearest neighbor or better" */
+  image-rendering: crisp-edges;  /* this means "nearest neighbor" */
+}
