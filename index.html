@@ -82,8 +82,12 @@
 
     <p>
       You might think using <code>image-rendering: pixelated</code> or <code>image-rendering: crisp-edges</code> 
-      would work. Unfortunately it won't. The reason is <strong>fractional devicePixelRatios</strong>!
+      would work. Unfortunately it won't. The reason is: <strong>fractional devicePixelRatios</strong>!
     </p>
+
+    <div class="center">
+      <code>current devicePixelRatio: </code><code id="dpr"></code>
+    </div>
 
     <p>
       Many devices have fractional devicePixelRatios. The devicePixelRatio is the ratio of the number of actual pixels
@@ -107,7 +111,6 @@
     <div class="center">
       <img src="images/blocky_right.png" style="width: 64px; height: 64px;" class="pixelated show-size">
     </div>
-
 
     <p>
       This script attempts to solve it. You give the image a desired integer scale (eg: scale=4)

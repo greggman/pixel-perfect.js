@@ -1,22 +1,45 @@
+:root {
+  --main-bg-color: #fff;
+  --main-fg-color: #000;
+  --main-link-color: #008;
+  --dpr-color: green;
+  --kbr-bg-color: #eee;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg-color: #444;
+    --main-fg-color: #fff;
+    --main-link-color: rgb(174, 208, 255);
+    --dpr-color: lightgreen;
+    --kbr-bg-color: #aaa;
+  }
+}
+
 html {
-  font-size: 2vh;
+  background-color: var(--main-bg-color);
+  color: var(--main-fg-color);
+  line-height: 1.5;
+  font-size: x-large;
+}
+a {
+  color: var(--main-link-color);
 }
 ul {
   padding: 0 3vh;
 }
 kbd {
-  background-color: #eee;
-  border-radius: 0.2vh;
-  border: 0.125vh solid #b4b4b4;
+  background-color: var(--kbr-bg-color);
+  border-radius: 2px;
+  border: 1px solid #b4b4b4;
   box-shadow:
-      0 0.125vh 0.125vh rgba(0, 0, 0, .2), 
-      0 0.25vh 0 0 rgba(255, 255, 255, .7) inset;
+      0 1px 1px rgba(0, 0, 0, .2), 
+      0 2px 0 0 rgba(255, 255, 255, .7) inset;
   color: #333;
   display: inline-block;
-  font-size: 1.5vh;
   font-weight: 700;
   line-height: 1;
-  padding: 0.25vh 0.5vh;
+  padding: 2px 4px;
+  margin: 0 2px 0 2px;
   white-space: nowrap;
 }
 .center {
@@ -34,10 +57,15 @@ kbd {
   align-items: center;
 }
 .desc {
-  max-width: 50vw;
+  max-width: 600px;
   margin: 0 auto;
 }
 .show-size-info {
   font-family: monospace;
-  font-size: 1.2vh;
+  font-size: 1.5vh;
+  white-space: pre;
+  color: var(--dpr-color);
+}
+#dpr {
+  color: var(--dpr-color);
 }

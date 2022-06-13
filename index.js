@@ -12,6 +12,7 @@ function showSizes() {
     const height = Math.round(rect.height * devicePixelRatio);
     elem.nextElementSibling.textContent = `displaySize: ${width}x${height}\neffectiveScale: ${toFixed(width / elem.naturalWidth)}`;
   });
+  document.querySelector('#dpr').textContent = devicePixelRatio;
 }
 
 function toFixed(v) {
