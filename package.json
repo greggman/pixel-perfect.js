@@ -1,6 +1,6 @@
 {
   "name": "pixel-perfect.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Display Images pixel perfect",
   "main": "pixel-perfect.js",
   "scripts": {
