@@ -1,16 +1,26 @@
+function setSize(elem) {
+  if (!elem.nextElementSibling) {
+    const sizeElem = document.createElement('div');
+    sizeElem.className = 'show-size-info';
+    elem.parentElement.insertBefore(sizeElem, elem.nextElementSibling);
+  }
+  const rect = elem.getBoundingClientRect();
+  // Warning: These values may be incorrect. 
+  // See: https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
+  const width = Math.round(rect.width * devicePixelRatio);
+  const height = Math.round(rect.height * devicePixelRatio);
+  elem.nextElementSibling.textContent = `displaySize: ${width}x${height}\neffectiveScale: ${toFixed(width / elem.naturalWidth)}`;
+}
+
 function showSizes() {
+  let stillLoading = false;
   document.querySelectorAll('.show-size').forEach(elem => {
-    if (!elem.nextElementSibling) {
-      const sizeElem = document.createElement('div');
-      sizeElem.className = 'show-size-info';
-      elem.parentElement.insertBefore(sizeElem, elem.nextElementSibling);
+    if (!elem.complete) {
+      stillLoading = true;
+      elem.decode().then(() => setSize(elem));
+    } else {
+      setSize(elem);
     }
-    const rect = elem.getBoundingClientRect();
-    // Warning: These values may be incorrect. 
-    // See: https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
-    const width = Math.round(rect.width * devicePixelRatio);
-    const height = Math.round(rect.height * devicePixelRatio);
-    elem.nextElementSibling.textContent = `displaySize: ${width}x${height}\neffectiveScale: ${toFixed(width / elem.naturalWidth)}`;
   });
   document.querySelector('#dpr').textContent = devicePixelRatio;
 }

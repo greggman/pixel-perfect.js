@@ -7,17 +7,18 @@ Display images pixel-perfect
 ## How to use
 
 In your image tags that you want to be pixel perfect give them
-the class `pixel-perfect` and optionally set a scale by adding
-`data-pixel-perfect="scale=2"` (or `=3`, `=16` etc).
+the class `pixel-perfect` and set a CSS size that is some
+integer multiple of your image.
 
 Example:
 
 ```html
-<img src="someImage.png" class="pixel-perfect" data-pixel-perfect="scale=4">
+<img src="100x150.png" class="pixel-perfect" style="width: 400px; height 600px">
 ```
 
-Scales must be an integer value by definition. You can't make
-something pixel perfect if it's scaled to a fractional value.
+Here we want the image displayed 3x the size. The reason to do it this way
+is so if the user has JavaScript disabled they'll still a size that matches
+your design.
 
 Define your `pixel-perfect` class as follows
 
@@ -33,6 +34,8 @@ Include this script on your page
 ```html
 <script type="module" src="pixel-perfect.js"></script>;
 ```
+
+Done!
 
 ## Special use cases
 

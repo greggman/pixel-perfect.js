@@ -1,13 +1,39 @@
 export function makePixelPerfect(elem) {
   if (elem instanceof HTMLImageElement && !elem.complete) {
-    elem.decode().then(() => makePixelPerfect(elem));
+    elem.decode()
+      .then(() => {
+        makePixelPerfect(elem);
+       });
+    return;
   }
   const origWidth = elem.naturalWidth; // TODO, handle canvas, video?
   const origHeight = elem.naturalHeight;
   const options = {
     scale: 1,
-    ...Object.fromEntries(new URLSearchParams(elem.dataset.pixelPerfect || '').entries()),
   };
+
+  {
+    const q = elem.dataset.pixelPerfect;
+    if (q) {
+      if (q.includes('=')) {
+        Object.assign(options, Object.fromEntries(new URLSearchParams(elem.dataset.pixelPerfect || '').entries()));
+      } else {
+        const scale = parseInt(q);
+        if (scale > 0) {
+          options.scale = scale;
+        }
+      }
+    } else {
+      // guess the scale based on the natural size vs the CSS size
+      const cssWidth = parseInt(getComputedStyle(elem).width);
+      const scale = Math.max(1, cssWidth / origWidth);
+      if (scale > 0) {
+        elem.dataset.pixelPerfect = scale;
+        options.scale = scale;
+      }
+    }
+
+  }
 
   const scale = options.scale
   if (scale % 1 !== 0) {
