@@ -19,7 +19,7 @@ Example:
 Scales must be an integer value by definition. You can't make
 something pixel perfect if it's scaled to a fractional value.
 
-Defined your `pixel-perfect` class as follows
+Define your `pixel-perfect` class as follows
 
 ```css
 .pixel-perfect {
@@ -31,15 +31,27 @@ Defined your `pixel-perfect` class as follows
 Include this script on your page
 
 ```html
-<script type="module">
-import * as pp from './pixel-perfect.js';
+<script type="module" src="pixel-perfect.js"></script>;
+```
+
+## Special use cases
+
+You can also import pixel-perfect.js as an es6 module.
+
+```js
+import {makePixelPerfect} from './pixel-perfect.js';
+```
+
+You can then call `makePixelPerfect` on any `<img>` element. For example
+
+```js
+import {makePixelPerfect} from './pixel-perfect.js';
 
 function makeAllPixelPerfect() {
   document.querySelectorAll(".pixel-perfect").forEach(pp.makePixelPerfect);
 }
 window.addEventListener('resize', makeAllPixelPerfect);
 makeAllPixelPerfect();
-</script>
 ```
 
 ## License
