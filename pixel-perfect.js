@@ -6,8 +6,8 @@ export function makePixelPerfect(elem) {
        });
     return;
   }
-  const origWidth = elem.naturalWidth; // TODO, handle canvas, video?
-  const origHeight = elem.naturalHeight;
+  const origWidth = elem.naturalWidth || elem.width; // TODO, handle canvas, video?
+  const origHeight = elem.naturalHeight || elem.height;
   const options = {
     scale: 1,
   };
