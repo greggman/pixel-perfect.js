@@ -9,7 +9,8 @@ function setSize(elem) {
   // See: https://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html
   const width = Math.round(rect.width * devicePixelRatio);
   const height = Math.round(rect.height * devicePixelRatio);
-  elem.nextElementSibling.textContent = `displaySize: ${width}x${height}\neffectiveScale: ${toFixed(width / elem.naturalWidth)}`;
+  const effectiveScale = width / elem.naturalWidth;
+  elem.nextElementSibling.textContent = `displaySize: ${width}x${height}\neffectiveScale: ${toFixed(effectiveScale)}x ${effectiveScale % 1 ? '👎' : '👍'}`;
 }
 
 function showSizes() {
