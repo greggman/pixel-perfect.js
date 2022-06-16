@@ -48,6 +48,11 @@ kbd {
 .vspace {
   padding: 1em;
 }
+.compare {
+  display: inline-block;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
 .pixelated {
   image-rendering: pixelated;
   image-rendering: crisp-edges;

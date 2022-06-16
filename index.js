@@ -10,7 +10,9 @@ function setSize(elem) {
   const width = Math.round(rect.width * devicePixelRatio);
   const height = Math.round(rect.height * devicePixelRatio);
   const effectiveScale = width / elem.naturalWidth;
-  elem.nextElementSibling.textContent = `displaySize: ${width}x${height}\neffectiveScale: ${toFixed(effectiveScale)}x ${effectiveScale % 1 ? '👎' : '👍'}`;
+  elem.nextElementSibling.textContent = elem.dataset.small
+      ? `${width}x${height} (${toFixed(effectiveScale)}x)`
+      : `displaySize: ${width}x${height}\neffectiveScale: ${toFixed(effectiveScale)}x ${effectiveScale % 1 ? '👎' : '👍'}`;
 }
 
 function showSizes() {

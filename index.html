@@ -127,13 +127,13 @@
       the 2 "pixel perfect" images do not scale smoothly. Instead they "jump" to the closed size that
       fits scaling the all the pixels by the same integer size. To put it another way, a 100x100 image
       can only appear on the page at 100x100, 200x200, 300x300, 400x400, etc... It can't by 50x50 nor
-      can it be 150x150. Those sizes wouldn't it to be "pixel-perfect".
+      can it be 150x150. Those sizes would not be "pixel-perfect".
     </p>
 
     <div class="center">
-      <img src="images/blocky_right.png" style="width: 64px; height: 64px;" class="pixel-perfect">
-      <img src="images/blocky_right.png" style="width: 64px; height: 64px;">
-      <img src="images/blocky_right.png" style="width: 64px; height: 64px;" class="pixelated">
+      <div class="compare"><img src="images/blocky_right.png" data-small="1" style="width: 64px; height: 64px;" class="show-size pixel-perfect"></div>
+      <div class="compare"><img src="images/blocky_right.png" data-small="1" style="width: 64px; height: 64px;" class="show-size"></div>
+      <div class="compare"><img src="images/blocky_right.png" data-small="1" style="width: 64px; height: 64px;" class="show-size pixelated"></div>
     </div>
  
     <p>

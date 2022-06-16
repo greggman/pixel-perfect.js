@@ -1,6 +1,6 @@
 # pixel-perfect.js
 
-Display images pixel-perfect
+Display images *pixel-perfect*
 
 [See example](https://greggman.github.io/pixel-perfect.js)
 
