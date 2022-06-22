@@ -72,7 +72,7 @@
     <p>
       Sometimes you want to display pixel art and you want it displayed "pixel-perfect"
       meaning you don't want any blurring of the pixels and you want each pixel in the
-      original image to be the some multiple of pixels on the user's device. In other words
+      original image to be some multiple of pixels on the user's device. In other words,
       say you have this 16x16 image.
     </p>
 
@@ -93,7 +93,7 @@
       Many devices have fractional devicePixelRatios. The devicePixelRatio is the ratio of the number of actual pixels
       to each CSS pixel (CSS pixels are what the browser uses). So, that 16x16 pixel image, by default, in every browser,
       will be displayed at 16 * devicePixelRatio. If the devicePixelRatio is 1.5 then it's going to draw the image 24x24
-      pixels large on the display. By default, most browser will use bilinear filtering. Below is the same
+      pixels large on the display. By default, most browsers will use bilinear filtering. Below is the same
       image as above with the browser's default.
     </p>
 
@@ -124,9 +124,9 @@
     <p>
       In order to be able to display images pixel perfect you must let the image change size on the page
       relative to other things. In the examples at the top of the page, try zooming in and out. Notice
-      the 2 "pixel perfect" images do not scale smoothly. Instead they "jump" to the closed size that
-      fits scaling the all the pixels by the same integer size. To put it another way, a 100x100 image
-      can only appear on the page at 100x100, 200x200, 300x300, 400x400, etc... It can't by 50x50 nor
+      the 2 "pixel perfect" images do not scale smoothly. Instead they "jump" to the closest size that
+      fits, scaling the all the pixels by the same integer size. To put it another way, a 100x100 image
+      can only appear on the page at 100x100, 200x200, 300x300, 400x400, etc... It can't be 50x50 nor
       can it be 150x150. Those sizes would not be "pixel-perfect".
     </p>
 
