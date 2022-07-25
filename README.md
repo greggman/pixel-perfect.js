@@ -4,6 +4,11 @@ Display images *pixel-perfect*
 
 [See example](https://greggman.github.io/pixel-perfect.js)
 
+## Note: 
+
+It looks like [`image-resolution: snap` CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/image-resolution)
+is supposed to do exactly what this library does. As if July 25th 2022 no browser has implemented it.
+
 ## How to use
 
 In your image tags that you want to be pixel perfect give them
